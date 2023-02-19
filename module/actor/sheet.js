@@ -38,7 +38,6 @@ export default class tfhogwartsActorSheet extends ActorSheet {
       });
     }
     // set House Logo 
-    console.log(sheet.data.system.type);
     switch (sheet.data.system.type) {
       case "gryffindor":
         actor.update({ "system.houseLogoUrl" : "systems/tfhogwarts/img/tfhogwarts/gryffindor.webp"});
@@ -53,7 +52,7 @@ export default class tfhogwartsActorSheet extends ActorSheet {
         actor.update({ "system.houseLogoUrl" : "systems/tfhogwarts/img/tfhogwarts/ravenclaw.webp"});
         break;
       default:
-        actor.update({ "system.houseLogoUrl" : "systems/tfhogwarts/img/tfhogwarts/house-not-assigned.webp"});
+        actor.update({ "system.houseLogoUrl" : "systems/tfhogwarts/img/tfhogwarts/hogwarts.webp"});
         break;
     }
     
