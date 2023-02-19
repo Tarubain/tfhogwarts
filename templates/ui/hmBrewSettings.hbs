@@ -5,7 +5,7 @@
         
         <div class="kid-factory section-header flexrow">
             <h4>Add Kid Type</h4>
-            <a class="item-control item-create" data-type="kid-type" data-trait="kid-type" title="{{localize "tftloop.addKidType"}}">
+            <a class="item-control item-create" data-type="kid-type" data-trait="kid-type" title="{{localize "tfhogwarts.addKidType"}}">
                 <i class="fas fa-plus"></i>
             </a>
         </div>
@@ -13,7 +13,7 @@
             {{#each options.customTypes as |type|}}
             <li class="info-item flexrow item" data-item-id="{{type._id}}">
                 <input class="type-name inline-edit" data-field="name" type="text" value="{{type}}"/>
-                <a class="item-control item-delete" data-type="kid-type" data-trait="kid-type" title="{{localize "tftloop.delete"}}">
+                <a class="item-control item-delete" data-type="kid-type" data-trait="kid-type" title="{{localize "tfhogwarts.delete"}}">
                     <i class="fas fa-minus"></i>
                 </a>
             </li>

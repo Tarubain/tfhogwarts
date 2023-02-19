@@ -1,4 +1,4 @@
-export default class tftloopActor extends Actor {
+export default class tfhogwartsActor extends Actor {
     prepareData() {
         super.prepareData();
         
@@ -17,12 +17,21 @@ export default class tftloopActor extends Actor {
 
     
     static async create(data, options = {}) {
-        if (data.type === "kid" || data.type === "teen") {
+        data.token = data.token || {};
+
+        if (data.type === "kid") {
             mergeObject(
-              {
+                data.token, {
+                    vision: true,
+                    dimSight: 30,
+                    brightSight: 0,
+                    actorLink: true,
+                    disposition: 1
+                }, {
                     overwrite: false
             });
         }
+
         return super.create(data, options);
     }
 }

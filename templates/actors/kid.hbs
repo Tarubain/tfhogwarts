@@ -1,6 +1,6 @@
 <form class="actor-sheet {{cssClass}}" autocomplete="off">
-    <header class="kid-header">
-        <img src="systems/tftloop/img/tftl-logo.png" class="logo" title="tales from the loop logo">
+    <header class="sheet-footer">
+        <img src="systems/tfhogwarts/img/tfhogwarts/charactersheet-header.png" class="logo" title="Tales from Hogwarts">
     </header>
 
     <div class="flexrow">
@@ -15,111 +15,210 @@
                 </div>
 
                 <div class="type">
-                    <label>{{localize "tftloop.type"}}</label>
+                    <label>{{localize "tfhogwarts.type"}}</label>
                     
                     <select name="system.type">
                         {{#select data.system.type}}
-                        <option value="bookworm">{{localize "tftloop.bookworm"}}</option>
-                        <option value="geek">{{localize "tftloop.geek"}}</option>
-                        <option value="hick">{{localize "tftloop.hick"}}</option>
-                        <option value="jock">{{localize "tftloop.jock"}}</option>
-                        <option value="popular">{{localize "tftloop.popular"}}</option>
-                        <option value="rocker">{{localize "tftloop.rocker"}}</option>
-                        <option value="troublemaker">{{localize "tftloop.troublemaker"}}</option>
-                        <option value="weirdo">{{localize "tftloop.weirdo"}}</option>
-                        {{#if francein80s}}
-                        <option value="combinard">{{localize "france.resourceful"}}</option>
-                        <option value="frimeur">{{localize "france.showoff"}}</option>
-                        <option value="inventeur">{{localize "france.inventor"}}</option>
-                        <option value="roliste">{{localize "france.rolePlayer"}}</option>
-                        {{/if}}
-						{{#if polishedition}}
-                        <option value="harcerka">{{localize "polish.scout"}}</option>
-                        <option value="punk">{{localize "polish.punk"}}</option>
-                        {{/if}}
+                        <option value="notassigned">{{localize "tfhogwarts.notassigned"}}</option>
+                        <option value="gryffindor">{{localize "tfhogwarts.gryffindor"}}</option>
+                        <option value="hufflepuff">{{localize "tfhogwarts.hufflepuff"}}</option>
+                        <option value="ravenclaw">{{localize "tfhogwarts.ravenclaw"}}</option>
+                        <option value="slyhterin">{{localize "tfhogwarts.slyhterin"}}</option>
                         {{/select}}
                     </select>
                 </div>  
             </div>
             <div class="attributes-skills">
-                <h4 class="section-header">{{localize "tftloop.attributesSkills"}}</h4>
+                <h4 class="section-header">{{localize "tfhogwarts.attributesSkills"}}</h4>
                 <ol class="attribute-list">
-                    <li class="attribute flexrow body"  id="attribute-body">
-                        <span class="add-to-pool" data-rolled="body">{{localize "tftloop.body"}}</span>
+                    <li class="attribute flexrow body" >
+                        <span class="add-to-pool" data-rolled="body">{{localize "tfhogwarts.body"}}</span>
                         <input type="text" name="system.body" value="{{data.system.body}}" data-dtype="Number"/>
                     </li>
                     <li>
                         <ol class="skill-list">
+                            <li class="skill flexrow flight" >
+                                <span class="add-to-pool" data-rolled="flight">{{localize "tfhogwarts.flight"}}</span>
+                                <input type="text" name="system.flight" value="{{data.system.flight}}" data-dtype="Number"/>
+                            </li>
                             <li class="skill flexrow sneak" >
-                                <span class="add-to-pool" data-rolled="sneak">{{localize "tftloop.sneak"}}</span>
+                                <span class="add-to-pool" data-rolled="sneak">{{localize "tfhogwarts.sneak"}}</span>
                                 <input type="text" name="system.sneak" value="{{data.system.sneak}}" data-dtype="Number"/>
                             </li>
                             <li class="skill flexrow force">
-                                <span class="add-to-pool" data-rolled="force">{{localize "tftloop.force"}}</span>
+                                <span class="add-to-pool" data-rolled="force">{{localize "tfhogwarts.force"}}</span>
                                 <input type="text" name="system.force" value="{{data.system.force}}" data-dtype="Number"/>
                             </li>
                             <li class="skill flexrow move">
-                                <span class="add-to-pool" data-rolled="move">{{localize "tftloop.move"}}</span>
+                                <span class="add-to-pool" data-rolled="move">{{localize "tfhogwarts.move"}}</span>
                                 <input type="text" name="system.move" value="{{data.system.move}}" data-dtype="Number"/>
                             </li>
                         </ol>
                     </li>
-                    <li class="attribute flexrow tech">
-                        <span class="add-to-pool" data-rolled="tech">{{localize "tftloop.tech"}}</span>
-                        <input type="text" name="system.tech" value="{{data.system.tech}}" data-dtype="Number"/>
+                    <li class="attribute flexrow magic">
+                        <span class="add-to-pool" data-rolled="magic">{{localize "tfhogwarts.magic"}}</span>
+                        <input type="text" name="system.magic" value="{{data.system.magic}}" data-dtype="Number"/>
                     </li>
                     <li>
                         <ol class="skill-list">
-                            <li class="skill flexrow tinker">
-                                <span class="add-to-pool" data-rolled="tinker">{{localize "tftloop.tinker"}}</span>
-                                <input type="text" name="system.tinker" value="{{data.system.tinker}}" data-dtype="Number"/>
+                            <li class="skill flexrow ferula" >
+                                <span class="add-to-pool" data-rolled="ferula">{{localize "tfhogwarts.ferula"}}</span>
+                                <input type="text" name="system.ferula" value="{{data.system.ferula}}" data-dtype="Number"/>
                             </li>
-                            <li class="skill flexrow program">
-                                <span class="add-to-pool" data-rolled="program">{{localize "tftloop.program"}}</span>
-                                <input type="text" name="system.program" value="{{data.system.program}}" data-dtype="Number"/>
+                            <li class="skill flexrow lumosnox" >
+                                <span class="add-to-pool" data-rolled="lumosnox">{{localize "tfhogwarts.lumosnox"}}</span>
+                                <input type="text" name="system.lumosnox" value="{{data.system.lumosnox}}" data-dtype="Number"/>
                             </li>
-                            <li class="skill flexrow calculate">
-                                <span class="add-to-pool" data-rolled="calculate">{{localize "tftloop.calculate"}}</span>
-                                <input type="text" name="system.calculate" value="{{data.system.calculate}}" data-dtype="Number"/>
+                            <li class="skill flexrow alohomora" >
+                                <span class="add-to-pool" data-rolled="alohomora">{{localize "tfhogwarts.alohomora"}}</span>
+                                <input type="text" name="system.alohomora" value="{{data.system.alohomora}}" data-dtype="Number"/>
+                            </li>
+                            <li class="skill flexrow periculum" >
+                                <span class="add-to-pool" data-rolled="periculum">{{localize "tfhogwarts.periculum"}}</span>
+                                <input type="text" name="system.periculum" value="{{data.system.periculum}}" data-dtype="Number"/>
+                            </li>
+                            <li class="skill flexrow petriflicustotalus" >
+                                <span class="add-to-pool" data-rolled="petriflicustotalus">{{localize "tfhogwarts.petriflicustotalus"}}</span>
+                                <input type="text" name="system.petriflicustotalus" value="{{data.system.petriflicustotalus}}" data-dtype="Number"/>
+                            </li>
+                            <li class="skill flexrow wingardiumleviosa" >
+                                <span class="add-to-pool" data-rolled="wingardiumleviosa">{{localize "tfhogwarts.wingardiumleviosa"}}</span>
+                                <input type="text" name="system.wingardiumleviosa" value="{{data.system.wingardiumleviosa}}" data-dtype="Number"/>
+                            </li>
+                            <li class="skill flexrow expelliarmus" >
+                                <span class="add-to-pool" data-rolled="expelliarmus">{{localize "tfhogwarts.expelliarmus"}}</span>
+                                <input type="text" name="system.expelliarmus" value="{{data.system.expelliarmus}}" data-dtype="Number"/>
+                            </li>
+                            <li class="skill flexrow incendio" >
+                                <span class="add-to-pool" data-rolled="incendio">{{localize "tfhogwarts.incendio"}}</span>
+                                <input type="text" name="system.incendio" value="{{data.system.incendio}}" data-dtype="Number"/>
+                            </li>
+                            <li class="skill flexrow protego" >
+                                <span class="add-to-pool" data-rolled="protego">{{localize "tfhogwarts.protego"}}</span>
+                                <input type="text" name="system.protego" value="{{data.system.protego}}" data-dtype="Number"/>
+                            </li>
+                            <li class="skill flexrow reparo" >
+                                <span class="add-to-pool" data-rolled="reparo">{{localize "tfhogwarts.reparo"}}</span>
+                                <input type="text" name="system.reparo" value="{{data.system.reparo}}" data-dtype="Number"/>
+                            </li>
+                            <li class="skill flexrow ridiculus" >
+                                <span class="add-to-pool" data-rolled="ridiculus">{{localize "tfhogwarts.ridiculus"}}</span>
+                                <input type="text" name="system.ridiculus" value="{{data.system.ridiculus}}" data-dtype="Number"/>
+                            </li>
+                            <li class="skill flexrow herbivicus" >
+                                <span class="add-to-pool" data-rolled="herbivicus">{{localize "tfhogwarts.herbivicus"}}</span>
+                                <input type="text" name="system.herbivicus" value="{{data.system.herbivicus}}" data-dtype="Number"/>
+                            </li>
+                            <li class="skill flexrow episkey" >
+                                <span class="add-to-pool" data-rolled="episkey">{{localize "tfhogwarts.episkey"}}</span>
+                                <input type="text" name="system.episkey" value="{{data.system.episkey}}" data-dtype="Number"/>
+                            </li>
+                            <li class="skill flexrow depulso" >
+                                <span class="add-to-pool" data-rolled="depulso">{{localize "tfhogwarts.depulso"}}</span>
+                                <input type="text" name="system.depulso" value="{{data.system.depulso}}" data-dtype="Number"/>
+                            </li>
+                            <li class="skill flexrow accio" >
+                                <span class="add-to-pool" data-rolled="accio">{{localize "tfhogwarts.accio"}}</span>
+                                <input type="text" name="system.accio" value="{{data.system.accio}}" data-dtype="Number"/>
+                            </li>
+                            <li class="skill flexrow stupor" >
+                                <span class="add-to-pool" data-rolled="stupor">{{localize "tfhogwarts.stupor"}}</span>
+                                <input type="text" name="system.stupor" value="{{data.system.stupor}}" data-dtype="Number"/>
+                            </li>
+                            <li class="skill flexrow espectopatronum" >
+                                <span class="add-to-pool" data-rolled="espectopatronum">{{localize "tfhogwarts.espectopatronum"}}</span>
+                                <input type="text" name="system.espectopatronum" value="{{data.system.espectopatronum}}" data-dtype="Number"/>
+                            </li>
+                            <li class="skill flexrow glacius" >
+                                <span class="add-to-pool" data-rolled="glacius">{{localize "tfhogwarts.glacius"}}</span>
+                                <input type="text" name="system.glacius" value="{{data.system.glacius}}" data-dtype="Number"/>
+                            </li>
+                            <li class="skill flexrow imperio" >
+                                <span class="add-to-pool" data-rolled="imperio">{{localize "tfhogwarts.imperio"}}</span>
+                                <input type="text" name="system.imperio" value="{{data.system.imperio}}" data-dtype="Number"/>
+                            </li>
+                            <li class="skill flexrow flipendo" >
+                                <span class="add-to-pool" data-rolled="flipendo">{{localize "tfhogwarts.flipendo"}}</span>
+                                <input type="text" name="system.flipendo" value="{{data.system.flipendo}}" data-dtype="Number"/>
+                            </li>
+                            <li class="skill flexrow bombarda" >
+                                <span class="add-to-pool" data-rolled="bombarda">{{localize "tfhogwarts.bombarda"}}</span>
+                                <input type="text" name="system.bombarda" value="{{data.system.bombarda}}" data-dtype="Number"/>
+                            </li>
+                            <li class="skill flexrow crucio" >
+                                <span class="add-to-pool" data-rolled="crucio">{{localize "tfhogwarts.crucio"}}</span>
+                                <input type="text" name="system.crucio" value="{{data.system.crucio}}" data-dtype="Number"/>
+                            </li>
+                            <li class="skill flexrow muffliato" >
+                                <span class="add-to-pool" data-rolled="muffliato">{{localize "tfhogwarts.muffliato"}}</span>
+                                <input type="text" name="system.muffliato" value="{{data.system.muffliato}}" data-dtype="Number"/>
+                            </li>
+                            <li class="skill flexrow redactum" >
+                                <span class="add-to-pool" data-rolled="redactum">{{localize "tfhogwarts.redactum"}}</span>
+                                <input type="text" name="system.redactum" value="{{data.system.redactum}}" data-dtype="Number"/>
+                            </li>
+                            <li class="skill flexrow vulnerasanentur" >
+                                <span class="add-to-pool" data-rolled="vulnerasanentur">{{localize "tfhogwarts.vulnerasanentur"}}</span>
+                                <input type="text" name="system.vulnerasanentur" value="{{data.system.vulnerasanentur}}" data-dtype="Number"/>
+                            </li>
+                            <li class="skill flexrow confringo" >
+                                <span class="add-to-pool" data-rolled="confringo">{{localize "tfhogwarts.confringo"}}</span>
+                                <input type="text" name="system.confringo" value="{{data.system.confringo}}" data-dtype="Number"/>
+                            </li>
+                            <li class="skill flexrow avadakedavra" >
+                                <span class="add-to-pool" data-rolled="avadakedavra">{{localize "tfhogwarts.avadakedavra"}}</span>
+                                <input type="text" name="system.avadakedavra" value="{{data.system.avadakedavra}}" data-dtype="Number"/>
                             </li>
                         </ol>
                     </li>
                     <li class="attribute flexrow heart">
-                        <span class="add-to-pool"data-rolled="heart">{{localize "tftloop.heart"}}</span>
+                        <span class="add-to-pool"data-rolled="heart">{{localize "tfhogwarts.heart"}}</span>
                         <input type="text" name="system.heart" value="{{data.system.heart}}" data-dtype="Number"/>
                     </li>
                     <li>
                         <ol class="skill-list">
+                            <li class="skill flexrow creatures">
+                                <span class="add-to-pool"data-rolled="creatures">{{localize "tfhogwarts.creatures"}}</span>
+                                <input type="text" name="system.creatures" value="{{data.system.creatures}}" data-dtype="Number"/>
+                            </li>
                             <li class="skill flexrow contact">
-                                <span class="add-to-pool"data-rolled="contact">{{localize "tftloop.contact"}}</span>
+                                <span class="add-to-pool"data-rolled="contact">{{localize "tfhogwarts.contact"}}</span>
                                 <input type="text" name="system.contact" value="{{data.system.contact}}" data-dtype="Number"/>
                             </li>
                             <li class="skill flexrow charm">
-                                <span class="add-to-pool" data-rolled="charm">{{localize "tftloop.charm"}}</span>
+                                <span class="add-to-pool" data-rolled="charm">{{localize "tfhogwarts.charm"}}</span>
                                 <input type="text" name="system.charm" value="{{data.system.charm}}" data-dtype="Number"/>
                             </li>
                             <li class="skill flexrow lead">
-                                <span class="add-to-pool" data-rolled="lead">{{localize "tftloop.lead"}}</span>
+                                <span class="add-to-pool" data-rolled="lead">{{localize "tfhogwarts.lead"}}</span>
                                 <input type="text" name="system.lead" value="{{data.system.lead}}" data-dtype="Number"/>
                             </li>
                         </ol>
                     </li>
                     <li class="attribute flexrow mind">
-                        <span class="add-to-pool" data-rolled="mind">{{localize "tftloop.mind"}}</span>
+                        <span class="add-to-pool" data-rolled="mind">{{localize "tfhogwarts.mind"}}</span>
                         <input type="text" name="system.mind" value="{{data.system.mind}}" data-dtype="Number"/>
                     </li>
                     <li>
                         <ol class="skill-list">
+                            <li class="skill flexrow herbology">
+                                <span class="add-to-pool" data-rolled="herbology">{{localize "tfhogwarts.herbology"}}</span>
+                                <input type="text" name="system.herbology" value="{{data.system.herbology}}" data-dtype="Number"/>
+                            </li>
+                            <li class="skill flexrow potions">
+                                <span class="add-to-pool" data-rolled="potions">{{localize "tfhogwarts.potions"}}</span>
+                                <input type="text" name="system.potions" value="{{data.system.potions}}" data-dtype="Number"/>
+                            </li>                            
                             <li class="skill flexrow investigate">
-                                <span class="add-to-pool" data-rolled="investigate">{{localize "tftloop.investigate"}}</span>
+                                <span class="add-to-pool" data-rolled="investigate">{{localize "tfhogwarts.investigate"}}</span>
                                 <input type="text" name="system.investigate" value="{{data.system.investigate}}" data-dtype="Number"/>
                             </li>
                             <li class="skill flexrow comprehend">
-                                <span class="add-to-pool" data-rolled="comprehend">{{localize "tftloop.comprehend"}}</span>
+                                <span class="add-to-pool" data-rolled="comprehend">{{localize "tfhogwarts.comprehend"}}</span>
                                 <input type="text" name="system.comprehend" value="{{data.system.comprehend}}" data-dtype="Number"/>
                             </li>
                             <li class="skill flexrow empathize">
-                                <span class="add-to-pool" data-rolled="empathize">{{localize "tftloop.empathize"}}</span>
+                                <span class="add-to-pool" data-rolled="empathize">{{localize "tfhogwarts.empathize"}}</span>
                                 <input type="text" name="system.empathize" value="{{data.system.empathize}}" data-dtype="Number"/>
                             </li>
                         </ol>
@@ -129,18 +228,18 @@
 
             <div class="experience-group">
                 <div class="section-header experience">
-                    {{localize "tftloop.experience"}}
+                    {{localize "tfhogwarts.experience"}}
                 </div>
 
-                <div class="exp-boxes flexrow" title="{{localize "tftloop.addexp"}}">
+                <div class="exp-boxes flexrow" title="{{localize "tfhogwarts.addexp"}}">
                     {{#times 10}}
                     <div class="exp-box">
                         <div class="img-container">
                             {{#if (gte ../data.system.exp @index)}}
-                            <img src="systems/tftloop/img/box_checked.png" height="18px" width="18px">
+                            <img src="systems/tfhogwarts/img/box_checked.png" height="18px" width="18px">
                             {{/if}}
                             {{#unless (gte ../data.system.exp @index)}}
-                            <img src="systems/tftloop/img/box_not_checked.png" height="18px" width="18px">
+                            <img src="systems/tfhogwarts/img/box_not_checked.png" height="18px" width="18px">
                             {{/unless}}
                         </div>
                     </div>
@@ -150,21 +249,21 @@
         </div>
         <div class="flexcol">
             <div class="sheet-tabs tabs flexrow" data-group="primary">
-                <b class="item" data-tab="main">{{localize "tftloop.main"}}</b>
-                <b class="item" data-tab="note">{{localize "tftloop.notes"}}</b>
+                <b class="item" data-tab="main">{{localize "tfhogwarts.main"}}</b>
+                <b class="item" data-tab="note">{{localize "tfhogwarts.notes"}}</b>
             </div>
             <div class="sheet-body">
                 <div class="tab" data-group="primary" data-tab="main">
                     <div class="main flexcol">
-                        {{> "systems/tftloop/templates/actors/parts/core-info.hbs"}}
-                        {{> "systems/tftloop/templates/actors/parts/conditions.hbs"}}
-                        {{> "systems/tftloop/templates/actors/parts/relationships.hbs"}}
-                        {{> "systems/tftloop/templates/actors/parts/item-hideout.hbs"}} 
+                        {{> "systems/tfhogwarts/templates/actors/parts/core-info.hbs"}}
+                        {{> "systems/tfhogwarts/templates/actors/parts/conditions-teen.hbs"}}
+                        {{> "systems/tfhogwarts/templates/actors/parts/relationships.hbs"}}
+                        {{> "systems/tfhogwarts/templates/actors/parts/item-hideout.hbs"}} 
                     </div>
                 </div>
                 <div class="tab" data-group="primary" data-tab="note">
                     <div class="notes-group info-group">
-                        <h4 class="section-header">{{localize "tftloop.notes"}}</h4>
+                        <h4 class="section-header">{{localize "tfhogwarts.notes"}}</h4>
                         <div class="kid-notes">
                             {{editor data.system.notes.value target="system.notes.value" button=true owner=owner editable=true }}
                         </div>
@@ -175,6 +274,6 @@
     </div>
 
     <footer class="sheet-footer">
-        <img src="systems/tftloop/img/footer-image.png" class="logo" title="page footer image">
+        <img src="systems/tfhogwarts/img/tfhogwarts/charactersheet-footer.png" class="logo">
     </footer>
 </form>

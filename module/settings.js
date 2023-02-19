@@ -1,8 +1,8 @@
-import {tftloop} from "./config.js";
+import {tfhogwarts} from "./config.js";
 
 
 export const registerSystemSettings = function () {
-    game.settings.registerMenu("tftloop", "homebrewMenu", {
+    game.settings.registerMenu("tfhogwarts", "homebrewMenu", {
         name: "Change the Default Kid Types",
         label: "Kid Type Editor",
         hint: "Open a dialog to edit the current kid types that show up on the character sheet.",
@@ -10,14 +10,14 @@ export const registerSystemSettings = function () {
         type: homeBrewMenu,
         restricted: true,
         data: {
-            template: "systems/tftloop/templates/ui/hmBrewSettings.hbs",
-            object: tftloop.kidTypes,
+            template: "systems/tfhogwarts/templates/ui/hmBrewSettings.hbs",
+            object: tfhogwarts.kidTypes,
             title: "Define Types of Kids"
         },
         config: true
     });
 
-    game.settings.register("tftloop", "francein80s", {
+    game.settings.register("tfhogwarts", "francein80s", {
         name: "SETTINGS.francein80s",
         scope: "world",
         config: true,
@@ -26,7 +26,7 @@ export const registerSystemSettings = function () {
         type: Boolean 
     });
 
-    game.settings.register("tftloop", "polishedition", {
+    game.settings.register("tfhogwarts", "polishedition", {
         name: "SETTINGS.polishedition",
         scope: "world",
         config: true,
@@ -35,7 +35,7 @@ export const registerSystemSettings = function () {
         type: Boolean 
     });
    
-    game.settings.register("tftloop", "kidTypeExpansion", {
+    game.settings.register("tfhogwarts", "kidTypeExpansion", {
         name: "SETTINGS.homebrewKidTypes",
         scope: "client",
         config: false,
@@ -51,7 +51,7 @@ class homeBrewMenu extends FormApplication {
         return mergeObject(super.defaultOptions, {
             title: "Define Types of Kids",
             id: "kid-config", 
-            template: "systems/tftloop/templates/ui/hmBrewSettings.hbs",
+            template: "systems/tfhogwarts/templates/ui/hmBrewSettings.hbs",
             width: 500,
             height: 700,
             closeOnSubmit: true
@@ -74,8 +74,8 @@ class homeBrewMenu extends FormApplication {
 	}
 
     getData() {
-        data.config = CONFIG.tftloop;
-        data.options.customTypes = tftloop.customTypes;
+        data.config = CONFIG.tfhogwarts;
+        data.options.customTypes = tfhogwarts.customTypes;
 
         return data;
     }
@@ -97,6 +97,6 @@ class homeBrewMenu extends FormApplication {
         event.preventDefault();
         
         this.options.customTypes.push("New Kid Type");
-        game.settings.set("tftloop", "kidTypeExpansion", this.options.customTypes)
+        game.settings.set("tfhogwarts", "kidTypeExpansion", this.options.customTypes)
     }
 }

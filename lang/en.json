@@ -1,5 +1,5 @@
 {
-    "tftloop": {
+    "tfhogwarts": {
         "attributesSkills": "Attributes/Skills",
         "experience": "Experience",
         "type": "Type",
@@ -12,7 +12,7 @@
         "troublemaker": "Troublemaker",
         "weirdo": "Weirdo",
         "body": "Body",
-        "tech": "Tech",
+        "magic": "magic",
         "heart": "Heart",
         "mind": "Mind",
         "sneak": "Sneak",
@@ -30,11 +30,11 @@
         "age": "Age",
         "luck": "Luck Points",
         "drive": "Drive: ",
-        "anchor": "Anchor: ",
+        "wand": "wand: ",
         "problem": "Problem: ",
         "pride": "Pride: ",
         "description": "Description: ",
-        "favSong": "Favorite Song: ",
+        "pet": "Favorite Song: ",
         "conditions": "Conditions",
         "upset": "Upset",
         "scared": "Scared",

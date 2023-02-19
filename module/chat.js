@@ -1,5 +1,5 @@
 export const hideChatActionButtons = function (_message, html, _data) {
-    const card = html.find(".tftloop.chat-card");
+    const card = html.find(".tfhogwarts.chat-card");
 
     if (card.length > 0){
         let actor = game.actors.get(card.attr("data-actor-id"));
@@ -34,11 +34,11 @@ async function onReroll(event) {
     let rollValue = r.total;
     let rollTooltip = await Promise.resolve(r.getTooltip());
     
-    let sucessText = game.i18n.localize("tftloop.failure");
+    let sucessText = game.i18n.localize("tfhogwarts.failure");
     
     if (rollValue > 0) {
         sucessText = rollValue + " " + game.i18n.localize(
-            rollValue > 1 ? "tftloop.successes" : "tftloop.success"
+            rollValue > 1 ? "tfhogwarts.successes" : "tfhogwarts.success"
         );
     }
 
@@ -49,7 +49,7 @@ async function onReroll(event) {
         <span class="flavor-text">
             <div class="chat-header flexrow">
                 <img class="portrait" width="48" height="48" src="` + actor.img + `"/>
-                <h1>` + game.i18n.localize("tftloop.rerolled") + `: ` + rolled + `</h1>
+                <h1>` + game.i18n.localize("tfhogwarts.rerolled") + `: ` + rolled + `</h1>
             </div>
             
             <div class="dice-roll">
@@ -63,11 +63,11 @@ async function onReroll(event) {
             </div>
             <div class="reroll-info" data-owner-id="` + actor.id + `">
                 <button class="reroll" data-owner-id="` + actor.id + `" data-tested="` + rolled + `" data-dicepool="` + reRollDiceFormula + `" type="button">
-                    ` + game.i18n.localize("tftloop.push") + `
+                    ` + game.i18n.localize("tfhogwarts.push") + `
                 </button>
             </div>
-            <div class="bug">
-                <img src="systems/tftloop/img/full_transparent.png" width="48" height="48"/>
+            <div>
+            <div class="chat-decoration"><img src="systems/tfhogwarts/img/tfhogwarts/decoration-bottom.png" width="200" height="47"/></div>
             </div>
         </span>
     `

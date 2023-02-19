@@ -1,31 +1,59 @@
 {
     "Actor": {
         "types": [
-            "kid", "teen"
+            "kid"
         ],
         "templates": {
             "attributes": {
                 "body": 0,
-                "tech": 0,
+                "magic": 0,
                 "heart": 0,
                 "mind": 0
             },
             "bodySkills": {
+                "flight": 0,
                 "sneak": 0,
                 "force": 0,
                 "move": 0
             },
-            "techSkills": {
-                "tinker": 0,
-                "program": 0,
-                "calculate": 0
+            "magicSkills": {
+                "ferula": 0,
+                "lumosnox": 0,
+                "alohomora": 0,
+                "periculum": 0,
+                "petriflicustotalus": 0,
+                "wingardiumleviosa": 0,
+                "expelliarmus": 0,
+                "incendio": 0,
+                "protego": 0,
+                "reparo": 0,
+                "ridiculus": 0,
+                "herbivicus": 0,
+                "episkey": 0,
+                "depulso": 0,
+                "accio": 0,
+                "stupor": 0,
+                "espectopatronum": 0,
+                "glacius": 0,
+                "imperio": 0,
+                "flipendo": 0,
+                "bombarda": 0,
+                "crucio": 0,
+                "muffliato": 0,
+                "redactum": 0,
+                "vulnerasanentur": 0,
+                "confringo": 0,
+                "avadakedavra": 0
             }, 
             "heartSkills": {
+                "creatures": 0,
                 "contact": 0,
                 "charm": 0,
                 "lead": 0
             },
             "mindSkills": {
+                "herbology": 0,
+                "potions": 0,
                 "investigate": 0,
                 "comprehend": 0,
                 "empathize": 0
@@ -40,21 +68,21 @@
         },
         "kid" : {
             "templates": [
-                "attributes", "bodySkills", "techSkills", "heartSkills", "mindSkills", "conditions"
+                "attributes", "bodySkills", "magicSkills", "heartSkills", "mindSkills", "conditions"
             ],
-            "age": 10,
+            "age": 11,
             "type": "type",
             "drive": "Drive",
             "luck": {
                 "value": 0,
                 "max": 0
             },
-            "anchor": "Anchor",
+            "wand": "Zauberstab",
             "problem": "Problem",
-            "pride": "Pride",
+            "pride": "Stolz",
             "prideCheck": false,
             "description": "Description",
-            "favoriteSong": "Favorite Song",
+            "pet": "Haustier",
             "iconicItem": {
                 "desc": "Item",
                 "bonus": 2
@@ -65,31 +93,7 @@
             },
             "dicePool": 0, 
             "exp": 0,
-            "curLuck": 5
-        },
-        "teen": {
-            "templates": [
-                "attributes", "bodySkills", "techSkills", "heartSkills", "mindSkills", "conditions"
-            ],
-            "age": 14,
-            "type": "type",
-            "drive": "Drive",
-            "anchor": "Anchor",
-            "problem": "Problem",
-            "shame": "Shame",
-            "shameCheck": false,
-            "description": "Description",
-            "favoriteSong": "Favorite Song",
-            "iconicItem": {
-                "desc": "Item",
-                "bonus": 2
-            },
-            "friction": "Friction",
-            "notes": {
-                "value": "Notes"
-            },
-            "dicePool": 0, 
-            "exp": 0, 
+            "curLuck": 5,
             "scars": {}
         },
         "creature": {}

@@ -1,4 +1,4 @@
-export default class tftloopItemSheet extends ItemSheet {
+export default class tfhogwartsItemSheet extends ItemSheet {
     constructor(...args) {
         super(...args);
     }
@@ -8,20 +8,20 @@ export default class tftloopItemSheet extends ItemSheet {
         return mergeObject(super.defaultOptions, {
             width : 650, 
             height: 350,
-            classes: ["tftloop", "sheet", "item"],
+            classes: ["tfhogwarts", "sheet", "item"],
             resizable: true, 
         });
     }
 
 
     get template() {
-        return `systems/tftloop/templates/items/${this.item.type}.hbs`;
+        return `systems/tfhogwarts/templates/items/${this.item.type}.hbs`;
     }
 
 
     getData() {
         const data = super.getData();
-        data.config = CONFIG.tftloop;
+        data.config = CONFIG.tfhogwarts;
         
         return data;
     }

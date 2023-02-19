@@ -1,40 +1,27 @@
-
-import { tftloopRoll } from "../macros.js";
-
-export default class tftloopActorSheet extends ActorSheet {
+export default class tfhogwartsActorSheet extends ActorSheet {
   static get defaultOptions() {
-
-    let loopOptions = super.defaultOptions;
-    
-    loopOptions.template = "systems/tftloop/templates/actors/character.hbs";
-    loopOptions.classes.push("tftloop");
-    loopOptions.classes.push("sheet");
-    loopOptions.classes.push("actor");
-    loopOptions.classes.push("character");
-    loopOptions.classes.push("kid");
-    loopOptions.width = 800;
-    loopOptions.height = 950;
-    loopOptions.tabs = [
-      { 
-        navSelector: ".sheet-tabs",
-        contentSelector: ".sheet-body",
-        initial: "main",
-      },
-    ];
-    loopOptions.dragDrop.push({dragSelector: ".attribute-list .attribute", dropSelector: null});
-    loopOptions.dragDrop.push({dragSelector: ".skill-list .skill", dropSelector: null});
-
-    return loopOptions;
-
+    return mergeObject(super.defaultOptions, {
+      template: "systems/tfhogwarts/templates/actors/character.hbs",
+      classes: ["tfhogwarts", "sheet", "actor", "character", "kid"],
+      width: 1400,
+      height: 950,
+      tabs: [
+        {
+          navSelector: ".sheet-tabs",
+          contentSelector: ".sheet-body",
+          initial: "main",
+        },
+      ],
+    });
   }
 
   get template() {
-    return `systems/tftloop/templates/actors/${this.actor.type}.hbs`;
+    return `systems/tfhogwarts/templates/actors/${this.actor.type}.hbs`;
   }
 
   getData() {
     const sheet = super.getData();
-    sheet.config = CONFIG.tftloop;
+    sheet.config = CONFIG.tfhogwarts;
     const actor = this.actor;
 
     sheet.relationships = sheet.items.filter(function (item) {
@@ -45,7 +32,7 @@ export default class tftloopActorSheet extends ActorSheet {
       return item.type == "item";
     });
 
-    if (actor.type == "teen") {
+    if (actor.type == "kid") {
       sheet.scars = sheet.items.filter(function (item) {
         return item.type == "scar";
       });
@@ -55,14 +42,21 @@ export default class tftloopActorSheet extends ActorSheet {
     if (actor.type == "kid") {
       const maxLuck = 15 - Number(sheet.data.system.age);
       const curLuck = maxLuck - sheet.data.system.luck.value;
-      actor.update({ "system.luck.max": maxLuck });
-      actor.update({ "system.curLuck": curLuck });
+
+      if (Number(sheet.data.system.age) > 15) {
+        actor.update({ "system.luck.max": 0 });
+        actor.update({ "system.curLuck": 0 });
+      } else {
+        actor.update({ "system.luck.max": maxLuck });
+        actor.update({ "system.curLuck": curLuck });
+      }      
+      
     }
     
-    sheet.francein80s = game.settings.get("tftloop", "francein80s")
+    sheet.francein80s = game.settings.get("tfhogwarts", "francein80s")
       ? true
       : false;
-    sheet.polishedition = game.settings.get("tftloop", "polishedition")
+    sheet.polishedition = game.settings.get("tfhogwarts", "polishedition")
       ? true
       : false;
 
@@ -90,34 +84,6 @@ export default class tftloopActorSheet extends ActorSheet {
     }
 
     super.activateListeners(html);
-  }
-
-
-  _onDragStart(event) {
-    
-    console.log("start drag", event.srcElement.firstElementChild.dataset.rolled);
-    console.log("start drag skill?", event.currentTarget.classList.contains("skill"));
-    console.log("start drag attribute?", event.currentTarget.classList.contains("attribute"));
-    
-    if(event.currentTarget.classList.contains("skill")||event.currentTarget.classList.contains("attribute")) {
-      console.log("a skill or attribute");
-      const rollItemDragged = event.srcElement.firstElementChild.dataset.rolled;
-      console.log("rollItemDragged", rollItemDragged);
-
-      tftloopRoll(rollItemDragged);
-      
-      
-      return;
-    } else {
-      console.log("not a skill or attribute");
-      super._onDragStart(event);
-      return;
-    }
-  
-    
-
-
-
   }
 
   _onItemDrag(event) {
@@ -152,17 +118,17 @@ export default class tftloopActorSheet extends ActorSheet {
     return;
   }
 
+  async _onAddToPool(event) {
+    event.preventDefault();
 
-  async _poolBuilder(rolled, actor){
-
+    let actor = this.actor;
     let data = actor.system;
     let items = actor.items.filter(function (item) {
       return item.type == "item";
     });
 
-
-    console.log("pool builder", rolled, data);
-
+    let element = event.currentTarget;
+    let rolled = element.dataset.rolled;
     let statRolled = "";
     let conditionPenalty = "";
 
@@ -175,25 +141,25 @@ export default class tftloopActorSheet extends ActorSheet {
           data.dicePool += data.body;
           statRolled =
             '<div class="pool-detail">' +
-            game.i18n.localize("tftloop.body") +
+            game.i18n.localize("tfhogwarts.body") +
             " +" +
             data.body +
             "</div>";
           break;
-        case "tech":
-          data.dicePool += data.tech;
+        case "magic":
+          data.dicePool += data.magic;
           statRolled =
             '<div class="pool-detail">' +
-            game.i18n.localize("tftloop.tech") +
+            game.i18n.localize("tfhogwarts.magic") +
             " +" +
-            data.tech +
+            data.magic +
             "</div>";
           break;
         case "heart":
           data.dicePool += data.heart;
           statRolled =
             '<div class="pool-detail">' +
-            game.i18n.localize("tftloop.heart") +
+            game.i18n.localize("tfhogwarts.heart") +
             " +" +
             data.heart +
             "</div>";
@@ -202,23 +168,39 @@ export default class tftloopActorSheet extends ActorSheet {
           data.dicePool += data.mind;
           statRolled =
             '<div class="pool-detail">' +
-            game.i18n.localize("tftloop.mind") +
+            game.i18n.localize("tfhogwarts.mind") +
             " +" +
             data.mind +
             "</div>";
           break;
+        case "flight":
+        data.dicePool += data.body;
+        data.dicePool += data.flight;
+        statRolled =
+          '<div class="pool-detail">' +
+          game.i18n.localize("tfhogwarts.body") +
+          " +" +
+          data.body +
+          "</div>";
+        statRolled +=
+          '<div class="pool-detail">' +
+          game.i18n.localize("tfhogwarts.flight") +
+          " +" +
+          data.flight +
+          "</div>";
+        break;
         case "sneak":
           data.dicePool += data.body;
           data.dicePool += data.sneak;
           statRolled =
             '<div class="pool-detail">' +
-            game.i18n.localize("tftloop.body") +
+            game.i18n.localize("tfhogwarts.body") +
             " +" +
             data.body +
             "</div>";
           statRolled +=
             '<div class="pool-detail">' +
-            game.i18n.localize("tftloop.sneak") +
+            game.i18n.localize("tfhogwarts.sneak") +
             " +" +
             data.sneak +
             "</div>";
@@ -228,13 +210,13 @@ export default class tftloopActorSheet extends ActorSheet {
           data.dicePool += data.force;
           statRolled =
             '<div class="pool-detail">' +
-            game.i18n.localize("tftloop.body") +
+            game.i18n.localize("tfhogwarts.body") +
             " +" +
             data.body +
             "</div>";
           statRolled +=
             '<div class="pool-detail">' +
-            game.i18n.localize("tftloop.force") +
+            game.i18n.localize("tfhogwarts.force") +
             " +" +
             data.force +
             "</div>";
@@ -244,77 +226,477 @@ export default class tftloopActorSheet extends ActorSheet {
           data.dicePool += data.move;
           statRolled =
             '<div class="pool-detail">' +
-            game.i18n.localize("tftloop.body") +
+            game.i18n.localize("tfhogwarts.body") +
             " +" +
             data.body +
             "</div>";
           statRolled +=
             '<div class="pool-detail">' +
-            game.i18n.localize("tftloop.move") +
+            game.i18n.localize("tfhogwarts.move") +
             " +" +
             data.move +
             "</div>";
           break;
-        case "tinker":
-          data.dicePool += data.tech;
-          data.dicePool += data.tinker;
-          statRolled =
-            '<div class="pool-detail">' +
-            game.i18n.localize("tftloop.tech") +
-            " +" +
-            data.tech +
-            "</div>";
-          statRolled +=
-            '<div class="pool-detail">' +
-            game.i18n.localize("tftloop.tinker") +
-            " +" +
-            data.tinker +
-            "</div>";
-          break;
-        case "program":
-          data.dicePool += data.tech;
-          data.dicePool += data.program;
-          statRolled =
-            '<div class="pool-detail">' +
-            game.i18n.localize("tftloop.tech") +
-            " +" +
-            data.tech +
-            "</div>";
-          statRolled +=
-            '<div class="pool-detail">' +
-            game.i18n.localize("tftloop.program") +
-            " +" +
-            data.program +
-            "</div>";
-          break;
-        case "calculate":
-          data.dicePool += data.tech;
-          data.dicePool += data.calculate;
-          statRolled =
-            '<div class="pool-detail">' +
-            game.i18n.localize("tftloop.tech") +
-            " +" +
-            data.tech +
-            "</div>";
-          statRolled +=
-            '<div class="pool-detail">' +
-            game.i18n.localize("tftloop.calculate") +
-            " +" +
-            data.calculate +
-            "</div>";
-          break;
-        case "contact":
+          case "ferula":
+            data.dicePool += data.magic;
+            data.dicePool += data.ferula;
+            statRolled =
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.magic") +
+              " +" +
+              data.magic +
+              "</div>";
+            statRolled +=
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.ferula") +
+              " +" +
+              data.ferula +
+              "</div>";
+            break;
+          case "lumosnox":
+            data.dicePool += data.magic;
+            data.dicePool += data.lumosnox;
+            statRolled =
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.magic") +
+              " +" +
+              data.magic +
+              "</div>";
+            statRolled +=
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.lumosnox") +
+              " +" +
+              data.lumosnox +
+              "</div>";
+            break;
+          case "alohomora":
+            data.dicePool += data.magic;
+            data.dicePool += data.alohomora;
+            statRolled =
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.magic") +
+              " +" +
+              data.magic +
+              "</div>";
+            statRolled +=
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.alohomora") +
+              " +" +
+              data.alohomora +
+              "</div>";
+            break;
+          case "periculum":
+            data.dicePool += data.magic;
+            data.dicePool += data.periculum;
+            statRolled =
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.magic") +
+              " +" +
+              data.magic +
+              "</div>";
+            statRolled +=
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.periculum") +
+              " +" +
+              data.periculum +
+              "</div>";
+            break;
+          case "petriflicustotalus":
+            data.dicePool += data.magic;
+            data.dicePool += data.petriflicustotalus;
+            statRolled =
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.magic") +
+              " +" +
+              data.magic +
+              "</div>";
+            statRolled +=
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.petriflicustotalus") +
+              " +" +
+              data.petriflicustotalus +
+              "</div>";
+            break;
+          case "wingardiumleviosa":
+            data.dicePool += data.magic;
+            data.dicePool += data.wingardiumleviosa;
+            statRolled =
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.magic") +
+              " +" +
+              data.magic +
+              "</div>";
+            statRolled +=
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.wingardiumleviosa") +
+              " +" +
+              data.wingardiumleviosa +
+              "</div>";
+            break;
+          case "expelliarmus":
+            data.dicePool += data.magic;
+            data.dicePool += data.expelliarmus;
+            statRolled =
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.magic") +
+              " +" +
+              data.magic +
+              "</div>";
+            statRolled +=
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.expelliarmus") +
+              " +" +
+              data.expelliarmus +
+              "</div>";
+            break;            
+          case "incendio":
+            data.dicePool += data.magic;
+            data.dicePool += data.incendio;
+            statRolled =
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.magic") +
+              " +" +
+              data.magic +
+              "</div>";
+            statRolled +=
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.incendio") +
+              " +" +
+              data.incendio +
+              "</div>";
+            break;
+          case "protego":
+            data.dicePool += data.magic;
+            data.dicePool += data.protego;
+            statRolled =
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.magic") +
+              " +" +
+              data.magic +
+              "</div>";
+            statRolled +=
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.protego") +
+              " +" +
+              data.protego +
+              "</div>";
+            break;
+          case "reparo":
+            data.dicePool += data.magic;
+            data.dicePool += data.reparo;
+            statRolled =
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.magic") +
+              " +" +
+              data.magic +
+              "</div>";
+            statRolled +=
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.reparo") +
+              " +" +
+              data.reparo +
+              "</div>";
+            break;
+          case "ridiculus":
+            data.dicePool += data.magic;
+            data.dicePool += data.ridiculus;
+            statRolled =
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.magic") +
+              " +" +
+              data.magic +
+              "</div>";
+            statRolled +=
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.ridiculus") +
+              " +" +
+              data.ridiculus +
+              "</div>";
+            break;
+          case "herbivicus":
+            data.dicePool += data.magic;
+            data.dicePool += data.herbivicus;
+            statRolled =
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.magic") +
+              " +" +
+              data.magic +
+              "</div>";
+            statRolled +=
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.herbivicus") +
+              " +" +
+              data.herbivicus +
+              "</div>";
+            break;
+          case "episkey":
+            data.dicePool += data.magic;
+            data.dicePool += data.episkey;
+            statRolled =
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.magic") +
+              " +" +
+              data.magic +
+              "</div>";
+            statRolled +=
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.episkey") +
+              " +" +
+              data.episkey +
+              "</div>";
+            break;
+          case "depulso":
+            data.dicePool += data.magic;
+            data.dicePool += data.depulso;
+            statRolled =
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.magic") +
+              " +" +
+              data.magic +
+              "</div>";
+            statRolled +=
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.depulso") +
+              " +" +
+              data.depulso +
+              "</div>";
+            break;
+          case "accio":
+            data.dicePool += data.magic;
+            data.dicePool += data.accio;
+            statRolled =
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.magic") +
+              " +" +
+              data.magic +
+              "</div>";
+            statRolled +=
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.accio") +
+              " +" +
+              data.accio +
+              "</div>";
+            break;
+          case "stupor":
+            data.dicePool += data.magic;
+            data.dicePool += data.stupor;
+            statRolled =
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.magic") +
+              " +" +
+              data.magic +
+              "</div>";
+            statRolled +=
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.stupor") +
+              " +" +
+              data.stupor +
+              "</div>";
+            break;
+          case "espectopatronum":
+            data.dicePool += data.magic;
+            data.dicePool += data.espectopatronum;
+            statRolled =
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.magic") +
+              " +" +
+              data.magic +
+              "</div>";
+            statRolled +=
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.espectopatronum") +
+              " +" +
+              data.espectopatronum +
+              "</div>";
+            break;
+          case "glacius":
+            data.dicePool += data.magic;
+            data.dicePool += data.glacius;
+            statRolled =
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.magic") +
+              " +" +
+              data.magic +
+              "</div>";
+            statRolled +=
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.glacius") +
+              " +" +
+              data.glacius +
+              "</div>";
+            break;
+          case "imperio":
+            data.dicePool += data.magic;
+            data.dicePool += data.imperio;
+            statRolled =
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.magic") +
+              " +" +
+              data.magic +
+              "</div>";
+            statRolled +=
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.imperio") +
+              " +" +
+              data.imperio +
+              "</div>";
+            break;
+          case "flipendo":
+            data.dicePool += data.magic;
+            data.dicePool += data.flipendo;
+            statRolled =
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.magic") +
+              " +" +
+              data.magic +
+              "</div>";
+            statRolled +=
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.flipendo") +
+              " +" +
+              data.flipendo +
+              "</div>";
+            break;
+          case "bombarda":
+            data.dicePool += data.magic;
+            data.dicePool += data.bombarda;
+            statRolled =
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.magic") +
+              " +" +
+              data.magic +
+              "</div>";
+            statRolled +=
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.bombarda") +
+              " +" +
+              data.bombarda +
+              "</div>";
+            break;
+          case "crucio":
+            data.dicePool += data.magic;
+            data.dicePool += data.crucio;
+            statRolled =
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.magic") +
+              " +" +
+              data.magic +
+              "</div>";
+            statRolled +=
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.crucio") +
+              " +" +
+              data.crucio +
+              "</div>";
+            break;
+          case "muffliato":
+            data.dicePool += data.magic;
+            data.dicePool += data.muffliato;
+            statRolled =
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.magic") +
+              " +" +
+              data.magic +
+              "</div>";
+            statRolled +=
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.muffliato") +
+              " +" +
+              data.muffliato +
+              "</div>";
+            break;
+          case "redactum":
+            data.dicePool += data.magic;
+            data.dicePool += data.redactum;
+            statRolled =
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.magic") +
+              " +" +
+              data.magic +
+              "</div>";
+            statRolled +=
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.redactum") +
+              " +" +
+              data.redactum +
+              "</div>";
+            break;
+          case "vulnerasanentur":
+            data.dicePool += data.magic;
+            data.dicePool += data.vulnerasanentur;
+            statRolled =
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.magic") +
+              " +" +
+              data.magic +
+              "</div>";
+            statRolled +=
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.vulnerasanentur") +
+              " +" +
+              data.vulnerasanentur +
+              "</div>";
+            break;
+          case "confringo":
+            data.dicePool += data.magic;
+            data.dicePool += data.confringo;
+            statRolled =
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.magic") +
+              " +" +
+              data.magic +
+              "</div>";
+            statRolled +=
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.confringo") +
+              " +" +
+              data.confringo +
+              "</div>";
+            break;
+          case "avadakedavra":
+            data.dicePool += data.magic;
+            data.dicePool += data.avadakedavra;
+            statRolled =
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.magic") +
+              " +" +
+              data.magic +
+              "</div>";
+            statRolled +=
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.avadakedavra") +
+              " +" +
+              data.avadakedavra +
+              "</div>";
+            break;
+          case "creatures":
+            data.dicePool += data.heart;
+            data.dicePool += data.creatures;
+            statRolled =
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.heart") +
+              " +" +
+              data.heart +
+              "</div>";
+            statRolled +=
+              '<div class="pool-detail">' +
+              game.i18n.localize("tfhogwarts.creatures") +
+              " +" +
+              data.creatures +
+              "</div>";
+            break;
+          case "contact":
           data.dicePool += data.heart;
           data.dicePool += data.contact;
           statRolled =
             '<div class="pool-detail">' +
-            game.i18n.localize("tftloop.heart") +
+            game.i18n.localize("tfhogwarts.heart") +
             " +" +
             data.heart +
             "</div>";
           statRolled +=
             '<div class="pool-detail">' +
-            game.i18n.localize("tftloop.contact") +
+            game.i18n.localize("tfhogwarts.contact") +
             " +" +
             data.contact +
             "</div>";
@@ -324,13 +706,13 @@ export default class tftloopActorSheet extends ActorSheet {
           data.dicePool += data.charm;
           statRolled =
             '<div class="pool-detail">' +
-            game.i18n.localize("tftloop.heart") +
+            game.i18n.localize("tfhogwarts.heart") +
             " +" +
             data.heart +
             "</div>";
           statRolled +=
             '<div class="pool-detail">' +
-            game.i18n.localize("tftloop.charm") +
+            game.i18n.localize("tfhogwarts.charm") +
             " +" +
             data.charm +
             "</div>";
@@ -341,15 +723,47 @@ export default class tftloopActorSheet extends ActorSheet {
 
           statRolled =
             '<div class="pool-detail">' +
-            game.i18n.localize("tftloop.heart") +
+            game.i18n.localize("tfhogwarts.heart") +
             " +" +
             data.heart +
             "</div>";
           statRolled +=
             '<div class="pool-detail">' +
-            game.i18n.localize("tftloop.lead") +
+            game.i18n.localize("tfhogwarts.lead") +
             " +" +
             data.lead +
+            "</div>";
+          break;
+        case "herbology":
+          data.dicePool += data.mind;
+          data.dicePool += data.herbology;
+          statRolled =
+            '<div class="pool-detail">' +
+            game.i18n.localize("tfhogwarts.mind") +
+            " +" +
+            data.mind +
+            "</div>";
+          statRolled +=
+            '<div class="pool-detail">' +
+            game.i18n.localize("tfhogwarts.herbology") +
+            " +" +
+            data.herbology +
+            "</div>";
+          break;
+        case "potions":
+          data.dicePool += data.mind;
+          data.dicePool += data.potions;
+          statRolled =
+            '<div class="pool-detail">' +
+            game.i18n.localize("tfhogwarts.mind") +
+            " +" +
+            data.mind +
+            "</div>";
+          statRolled +=
+            '<div class="pool-detail">' +
+            game.i18n.localize("tfhogwarts.potions") +
+            " +" +
+            data.potions +
             "</div>";
           break;
         case "investigate":
@@ -357,13 +771,13 @@ export default class tftloopActorSheet extends ActorSheet {
           data.dicePool += data.investigate;
           statRolled =
             '<div class="pool-detail">' +
-            game.i18n.localize("tftloop.mind") +
+            game.i18n.localize("tfhogwarts.mind") +
             " +" +
             data.mind +
             "</div>";
           statRolled +=
             '<div class="pool-detail">' +
-            game.i18n.localize("tftloop.investigate") +
+            game.i18n.localize("tfhogwarts.investigate") +
             " +" +
             data.investigate +
             "</div>";
@@ -373,13 +787,13 @@ export default class tftloopActorSheet extends ActorSheet {
           data.dicePool += data.comprehend;
           statRolled =
             '<div class="pool-detail">' +
-            game.i18n.localize("tftloop.mind") +
+            game.i18n.localize("tfhogwarts.mind") +
             " +" +
             data.mind +
             "</div>";
           statRolled +=
             '<div class="pool-detail">' +
-            game.i18n.localize("tftloop.comprehend") +
+            game.i18n.localize("tfhogwarts.comprehend") +
             " +" +
             data.comprehend +
             "</div>";
@@ -389,13 +803,13 @@ export default class tftloopActorSheet extends ActorSheet {
           data.dicePool += data.empathize;
           statRolled =
             '<div class="pool-detail">' +
-            game.i18n.localize("tftloop.mind") +
+            game.i18n.localize("tfhogwarts.mind") +
             " +" +
             data.mind +
             "</div>";
           statRolled +=
             '<div class="pool-detail">' +
-            game.i18n.localize("tftloop.empathize") +
+            game.i18n.localize("tfhogwarts.empathize") +
             " +" +
             data.empathize +
             "</div>";
@@ -409,7 +823,7 @@ export default class tftloopActorSheet extends ActorSheet {
         }
         conditionPenalty +=
           '<div class="pool-detail penalty">' +
-          game.i18n.localize("tftloop.upset") +
+          game.i18n.localize("tfhogwarts.upset") +
           " -1</div>";
       }
 
@@ -419,7 +833,7 @@ export default class tftloopActorSheet extends ActorSheet {
         }
         conditionPenalty +=
           '<div class="pool-detail penalty">' +
-          game.i18n.localize("tftloop.scared") +
+          game.i18n.localize("tfhogwarts.scared") +
           " -1</div>";
       }
 
@@ -429,7 +843,7 @@ export default class tftloopActorSheet extends ActorSheet {
         }
         conditionPenalty +=
           '<div class="pool-detail penalty">' +
-          game.i18n.localize("tftloop.exhausted") +
+          game.i18n.localize("tfhogwarts.exhausted") +
           " -1</div>";
       }
 
@@ -439,7 +853,7 @@ export default class tftloopActorSheet extends ActorSheet {
         }
         conditionPenalty +=
           '<div class="pool-detail penalty">' +
-          game.i18n.localize("tftloop.injured") +
+          game.i18n.localize("tfhogwarts.injured") +
           " -1</div>";
       }
 
@@ -448,11 +862,11 @@ export default class tftloopActorSheet extends ActorSheet {
       let rollHTML = `
                 <div class="form-group">
                     <h2>${game.i18n.localize(
-                      "tftloop.rolling"
-                    )}: ${game.i18n.localize("tftloop." + rolled)}</h2>
+                      "tfhogwarts.rolling"
+                    )}: ${game.i18n.localize("tfhogwarts." + rolled)}</h2>
                     <div class="pool-count">${game.i18n.localize(
-                      "tftloop.currentPool"
-                    )}: ${data.dicePool} Dice</div>
+                      "tfhogwarts.currentPool"
+                    )}: ${data.dicePool} ${game.i18n.localize("tfhogwarts.dice")}</div>
                     <div class="pool-details">
                         ${statRolled}
                     
@@ -460,14 +874,14 @@ export default class tftloopActorSheet extends ActorSheet {
                     <div class="divider"></div>
                     <div class="pool-item-select">
                     <label for="roll-item">${game.i18n.localize(
-                      "tftloop.useItem"
+                      "tfhogwarts.useItem"
                     )}:</label>
                     <select id="roll-item" name="useItem" style="margin-bottom: 5px">
                         <option value="0">${game.i18n.localize(
-                          "tftloop.none"
+                          "tfhogwarts.none"
                         )}</option>
                         <option value="2">${game.i18n.localize(
-                          "tftloop.iconic"
+                          "tfhogwarts.iconic"
                         )}${data.iconicItem.desc} + 2</option>
                         ${items.map(
                           (item) =>
@@ -483,12 +897,12 @@ export default class tftloopActorSheet extends ActorSheet {
                     </div>
                         <div class="bonus-dice flexrow" style="margin-bottom: 5px;">
                             <label>${game.i18n.localize(
-                              "tftloop.bonusDice"
+                              "tfhogwarts.bonusDice"
                             )}: </label>
                             <input name="bonusDice" type="text" value="" placeholder="0" data-dtype="Number"/>
                         </div>
                     </div>
-                    <div class="bug"><img src="systems/tftloop/img/full_transparent.png" width="48" height="48"/></div>
+                    <div class="chat-decoration"><img src="systems/tfhogwarts/img/tfhogwarts/decoration-bottom.png" width="200" height="47"/></div>
                 </div>
             `;
 
@@ -497,19 +911,19 @@ export default class tftloopActorSheet extends ActorSheet {
       // create dialog to get the use of item and or a bonus for dice
       let yesRoll = false;
       let d = new Dialog({
-        title: game.i18n.localize("tftloop.diceRoll"),
+        title: game.i18n.localize("tfhogwarts.diceRoll"),
         content: rollHTML,
         buttons: {
           one: {
             icon: '<i class="fas fa-check"></i>',
-            label: game.i18n.localize("tftloop.roll"),
+            label: game.i18n.localize("tfhogwarts.roll"),
             callback: () => {
               yesRoll = true;
             },
           },
           two: {
             icon: '<i class="fas fa-times"></i>',
-            label: game.i18n.localize("tftloop.cancel"),
+            label: game.i18n.localize("tfhogwarts.cancel"),
             callback: () => {
               data.dicePool = 0;
             },
@@ -517,7 +931,7 @@ export default class tftloopActorSheet extends ActorSheet {
         },
         default: "two",
         render: (_html) =>
-          console.log("TFTLOOP | Rendering Dice Rolling Dialog"),
+          console.log("tfhogwarts | Rendering Dice Rolling Dialog"),
         close: async (html) => {
           if (yesRoll) {
             let itemBonus = Number(html.find('[name="useItem"]')[0].value);
@@ -530,7 +944,7 @@ export default class tftloopActorSheet extends ActorSheet {
 
             let rollFormula = data.dicePool + "d6cs6";
 
-            console.log("TFTLOOP | Rolling Dice: " + this.actor);
+            console.log("tfhogwarts | Rolling Dice: " + this.actor);
 
             let r = new Roll(rollFormula, this.actor.system.data);
             await r.evaluate();
@@ -538,14 +952,14 @@ export default class tftloopActorSheet extends ActorSheet {
             let rollValue = r.total;
             console.log("DICE ROLL :" + rollValue);
             let rollTooltip = await Promise.resolve(r.getTooltip());
-            let sucessText = game.i18n.localize("tftloop.failure");
+            let sucessText = game.i18n.localize("tfhogwarts.failure");
             if (rollValue > 0) {
               console.log("DICE ROLL success");
               sucessText =
                 rollValue +
                 " " +
                 game.i18n.localize(
-                  rollValue > 1 ? "tftloop.successes" : "tftloop.success"
+                  rollValue > 1 ? "tfhogwarts.successes" : "tfhogwarts.success"
                 );
             }
 
@@ -560,12 +974,12 @@ export default class tftloopActorSheet extends ActorSheet {
               this.actor.img +
               `"/>
                                     <h1>` +
-              game.i18n.localize("tftloop.tested") +
+              game.i18n.localize("tfhogwarts.tested") +
               `: ` +
-              game.i18n.localize("tftloop." + rolled) +
+              game.i18n.localize("tfhogwarts." + rolled) +
               `</h1>
                                 </div>
-                                <div class="tftloop chat-card" data-actor-id="` +
+                                <div class="tfhogwarts chat-card" data-actor-id="` +
               actor.id +
               `">
                                 <div class="dice-roll">
@@ -589,17 +1003,17 @@ export default class tftloopActorSheet extends ActorSheet {
                                     <button class="reroll" data-owner-id="` +
               actor.id +
               `" data-tested="` +
-              game.i18n.localize("tftloop." + rolled) +
+              game.i18n.localize("tfhogwarts." + rolled) +
               `" data-dicepool="` +
               reRollDiceFormula +
               `" type="button">
                                         ` +
-              game.i18n.localize("tftloop.push") +
+              game.i18n.localize("tfhogwarts.push") +
               `
                                     </button>
                                 </div>
                                 </div>
-                                <div class="bug"><img src="systems/tftloop/img/full_transparent.png" width="48" height="48"/></div>
+                                <div class="chat-decoration"><img src="systems/tfhogwarts/img/tfhogwarts/decoration-bottom.png" width="200" height="47"/></div>
                             </span>
                         `;
 
@@ -630,22 +1044,8 @@ export default class tftloopActorSheet extends ActorSheet {
 
       d.render(true);
     } else {
-      ui.notifications.info(game.i18n.localize("tftloop.brokeFail"));
+      ui.notifications.info(game.i18n.localize("tfhogwarts.brokeFail"));
     }
-
-  }
-
-
-
-  async _onAddToPool(event) {
-    event.preventDefault();
-
-    let actor = this.actor;
-    let element = event.currentTarget;
-    let rolled = element.dataset.rolled;
-
-    await this._poolBuilder(rolled, actor);
-
   }
 
   _onExpChange(event) {
@@ -722,7 +1122,7 @@ export default class tftloopActorSheet extends ActorSheet {
 
     let itemData = [
       {
-        name: game.i18n.localize("tftloop.new"),
+        name: game.i18n.localize("tfhogwarts.new"),
         type: event.currentTarget.dataset.type,
       },
     ];
@@ -813,16 +1213,6 @@ export default class tftloopActorSheet extends ActorSheet {
         } else {
           item.system.accepted = true;
           item.update({ "system.accepted": true });
-        }
-
-        break;
-      case "shameCheck":
-        if (this.actor.system.shameCheck) {
-          this.actor.system.shameCheck = false;
-          actor.update({ "system.shameCheck": false });
-        } else {
-          this.actor.system.shameCheck = true;
-          actor.update({ "system.shameCheck": true });
         }
 
         break;

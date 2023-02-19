@@ -1,7 +1,7 @@
-export const tftloop = {};
+export const tfhogwarts = {};
 
 
-tftloop.ASCII = 
+tfhogwarts.ASCII = 
 `
 ███████████      ████                                           
 ░█░░░███░░░█     ░░███                                           
@@ -33,26 +33,22 @@ tftloop.ASCII =
 `;
 
 
-tftloop.attributes = {
-    "body": "tftloop.body",
-    "tech": "tftloop.tech",
-    "heart": "tftloop.heart",
-    "mind":  "tftloop.mind"
+tfhogwarts.attributes = {
+    "body": "tfhogwarts.body",
+    "magic": "tfhogwarts.magic",
+    "heart": "tfhogwarts.heart",
+    "mind":  "tfhogwarts.mind"
 };
 
 
-tftloop.kidTypes = {
-    "bookworm": "tftloop.bookworm",
-    "computer geek": "tftloop.geek",
-    "hick": "tftloop.hick",
-    "jock": "tftloop.jock",
-    "popular kid": "tftloop.popular",
-    "rocker": "tftloop.rocker",
-    "troublemaker": "tftloop.troublemaker",
-    "weirdo": "tftloop.weirdo"
+tfhogwarts.kidTypes = {
+    "gryffindor": "tfhogwarts.gryffindor",
+    "hufflepuff": "tfhogwarts.hufflepuff",
+    "ravenclaw": "tfhogwarts.ravenclaw",
+    "slyhterin": "tfhogwarts.slyhterin",
 };
 
 
-tftloop.customTypes = [];
+tfhogwarts.customTypes = [];
 
-tftloop.dataset = "./actor/types.json";
+tfhogwarts.dataset = "./actor/types.json";

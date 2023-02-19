@@ -1,39 +1,39 @@
 {
-  "id": "tftloop",
-  "title": "Tales from the Loop - Official",
-  "description": "The Official System for Playing Tales from the Loop on Foundry VTT - Now with Things from the Flood support.",
+  "id": "tfhogwarts",
+  "title": "Tales from Hogwarts",
+  "description": "Eine modifzierte Version von Tales from the Loop für den Einsatz in der Wizarding World.",
   "authors": [
     {
-      "name": "Dr Ogres",
-      "url": "https://github.com/DrOgres",
+      "name": "Nikolai Schwarzl | Dr Ogres",
+      "url": "https://github.com/Tarubain",
       "flags": {}
     }
   ],
-  "url": "https://github.com/DrOgres/tftloop",
-  "version": "2.0.4",
+  "url": "https://github.com/Tarubain/tfhogwarts",
+  "version": "0.0.1",
   "compatibility": {
     "minimum": "10"
   },
   "media": [
     {
       "type": "cover",
-      "url": "https://github.com/DrOgres/tftloop/blob/main/img/loop_system.png?raw=true",
+      "url": "",
       "loop": false,
       "flags": {}
     },
     {
       "type": "screenshot",
-      "url": "https://github.com/DrOgres/tftloop/blob/main/img/loop_system.jpg?raw=true",
+      "url": "",
       "loop": false,
       "flags": {}
     }
   ],
-  "background": "systems/tftloop/img/loop_system.png",
+  "background": "systems/tfhogwarts/img/tfhogwarts/system-login-splash.jpg",
   "esmodules": [
-    "tftloop.js"
+    "tfhogwarts.js"
   ],
   "styles": [
-    "tftloop.css"
+    "tfhogwarts.css"
   ],
   "languages": [
     {
@@ -43,50 +43,14 @@
       "flags": {}
     },
     {
-      "lang": "fr",
-      "name": "Français",
-      "path": "lang/fr.json",
-      "flags": {}
-    },
-    {
       "lang": "de",
-      "name": "Deutsche",
+      "name": "Deutsch",
       "path": "lang/de.json",
-      "flags": {}
-    },
-    {
-      "lang": "es",
-      "name": "Español",
-      "path": "lang/es.json",
-      "flags": {}
-    },
-    {
-      "lang": "pt-BR",
-      "name": "Português (Brasil)",
-      "path": "lang/pt-br.json",
-      "flags": {}
-    },
-    {
-      "lang": "sv-SE",
-      "name": "Svenska (Sverige)",
-      "path": "lang/sv-SE.json",
-      "flags": {}
-    },
-    {
-      "lang": "ja",
-      "name": "日本語",
-      "path": "lang/ja.json",
-      "flags": {}
-    },
-    {
-      "lang": "pl",
-      "name": "Polski",
-      "path": "lang/pl.json",
       "flags": {}
     }
   ],
-  "manifest": "https://github.com/DrOgres/tftloop/releases/latest/download/system.json",
-  "download": "https://github.com/DrOgres/tftloop/releases/download/2.0.1/system.zip",
+  "manifest": "",
+  "download": "",
   "gridDistance": 1,
   "gridUnits": "meter"
 }

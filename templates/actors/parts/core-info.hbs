@@ -1,70 +1,82 @@
 <div class="core-info info-group">
     <div class="flexrow">
-        <div class="info-item short">
-            <label>{{localize "tftloop.age"}}</label>
-            <select name="system.age">
-                {{#select data.system.age}}
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
-                {{/select}}
-            </select>
-        </div>
+        <div class="flexcol">
+            <div class="flexrow">
+                <div class="info-item short">
+                    <label>{{localize "tfhogwarts.age"}}</label>
+                    <select name="system.age">
+                        {{#select data.system.age}}
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        {{/select}}
+                    </select>
+                </div>
 
-        <div class="special-item flexrow">
-            <label class="use-luck">{{localize "tftloop.luck"}}
-                {{#times data.system.curLuck}}
-                <img src="systems/tftloop/img/box_not_checked.png" height="18px" width="18px">
-                {{/times}}
+                <div class="special-item flexrow">
+                    <label class="use-luck">{{localize "tfhogwarts.luck"}}
+                        {{#times data.system.curLuck}}
+                        <img src="systems/tfhogwarts/img/box_not_checked.png" height="18px" width="18px">
+                        {{/times}}
 
-                {{#times data.system.luck.value}}
-                <img src="systems/tftloop/img/box_checked.png" height="18px" width="18px">
-                {{/times}}
-            </label>
+                        {{#times data.system.luck.value}}
+                        <img src="systems/tfhogwarts/img/box_checked.png" height="18px" width="18px">
+                        {{/times}}
+                    </label>
+                    
+                    <div class="reset-luck">{{localize "tfhogwarts.reset"}}</div>
+                </div>
+            </div>
             
-            <div class="reset-luck">{{localize "tftloop.reset"}}</div>
-        </div>
+            <div class="info-item even flexrow">
+                <label>{{localize "tfhogwarts.drive"}}</label>
+                <input name="system.drive" type="text" value="{{data.system.drive}}" placeholder=""/>
+            </div>
+
+            <div class="info-item odd flexrow">
+                <label>{{localize "tfhogwarts.wand"}}</label>
+                <input name="system.wand" type="text" value="{{data.system.wand}}" placeholder=""/>
+            </div>
+
+            <div class="info-item even flexrow">
+                <label>{{localize "tfhogwarts.problem"}}</label>
+                <input name="system.problem" type="text" value="{{data.system.problem}}" placeholder=""/>
+            </div>
+
+            <div class="info-item odd flexrow">
+                <label>{{localize "tfhogwarts.pride"}}</label>
+                <input name="system.pride" type="text" value="{{data.system.pride}}" placeholder=""/>
+                <label class="imgCheck">
+                    {{#unless data.system.prideCheck}}
+                    <img class="toggle-boolean" data-toggle="prideCheck" src="systems/tfhogwarts/img/box_not_checked.png" height="18px" width="18px">
+                    {{/unless}}
+
+                    {{#if data.system.prideCheck}}
+                    <img class="toggle-boolean" data-toggle="prideCheck" src="systems/tfhogwarts/img/box_checked.png" height="18px" width="18px">
+                    {{/if}}
+                </label>
+            </div>
+
+            <div class="info-item even flexrow">
+                <label>{{localize "tfhogwarts.description"}}</label>
+                <input name="system.description" type="text" value="{{data.system.description}}" placeholder=""/>
+            </div>
+
+            <div class="info-item odd flexrow">
+                <label>{{localize "tfhogwarts.pet"}}</label>
+                <input name="system.pet" type="text" value="{{data.system.pet}}" placeholder=""/>
+            </div>
     </div>
-    
-    <div class="info-item even flexrow">
-        <label>{{localize "tftloop.drive"}}</label>
-        <input name="system.drive" type="text" value="{{data.system.drive}}" placeholder=""/>
+    <div class="flexcol hogwarts-house-col">
+        <div class="flexrow hogwarts-house-img">
+            <img src="systems/tfhogwarts/img/tfhogwarts/slytherin.webp" alt="Slytherin">
+         </div>
+    </div>
     </div>
 
-    <div class="info-item odd flexrow">
-        <label>{{localize "tftloop.anchor"}}</label>
-        <input name="system.anchor" type="text" value="{{data.system.anchor}}" placeholder=""/>
-    </div>
 
-    <div class="info-item even flexrow">
-        <label>{{localize "tftloop.problem"}}</label>
-        <input name="system.problem" type="text" value="{{data.system.problem}}" placeholder=""/>
-    </div>
-
-    <div class="info-item odd flexrow">
-        <label>{{localize "tftloop.pride"}}</label>
-        <input name="system.pride" type="text" value="{{data.system.pride}}" placeholder=""/>
-        <label class="imgCheck">
-            {{#unless data.system.prideCheck}}
-            <img class="toggle-boolean" data-toggle="prideCheck" src="systems/tftloop/img/box_not_checked.png" height="18px" width="18px">
-            {{/unless}}
-
-            {{#if data.system.prideCheck}}
-            <img class="toggle-boolean" data-toggle="prideCheck" src="systems/tftloop/img/box_checked.png" height="18px" width="18px">
-            {{/if}}
-        </label>
-    </div>
-
-    <div class="info-item even flexrow">
-        <label>{{localize "tftloop.description"}}</label>
-        <input name="system.description" type="text" value="{{data.system.description}}" placeholder=""/>
-    </div>
-
-    <div class="info-item odd flexrow">
-        <label>{{localize "tftloop.favSong"}}</label>
-        <input name="system.favoriteSong" type="text" value="{{data.system.favoriteSong}}" placeholder=""/>
-    </div>
 </div>

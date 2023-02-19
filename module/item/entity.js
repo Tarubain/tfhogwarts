@@ -1,1 +1,1 @@
-export default class tftloopItem extends Item { }
+export default class tfhogwartsItem extends Item { }

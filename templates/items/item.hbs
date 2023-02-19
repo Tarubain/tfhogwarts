@@ -9,25 +9,25 @@
         </div>   
 
         <div class="item-info">
-            <h1 class="us-text flexrow">{{localize "tftloop.item"}}</h1>
+            <h1 class="us-text flexrow">{{localize "tfhogwarts.item"}}</h1>
             
             <div class="header-details flexcol">
                 <div class="item-name flexrow">
-                    <div class="row-label">{{localize "tftloop.description"}}</div>
+                    <div class="row-label">{{localize "tfhogwarts.description"}}</div>
                     <h1 class = "charname">
                         <input name="name" type="text" value="{{item.name}}"/>
                     </h1>
                     <img class="profile" src="{{item.img}}" data-edit="img" title="{{item.name}}">
                 </div>
                 <div class="info-item flexrow">
-                    <div class="row-label">{{localize "tftloop.bonus"}}:</div>
+                    <div class="row-label">{{localize "tfhogwarts.bonus"}}:</div>
                     <div class="item-plus">+</div>
                     <input class="item-bonus" name="system.bonus" data-field="system.bonus" type="text" value="{{data.system.bonus}}" data-dtype="Number"/>
                 </div>
             </div>
 
             <div class="item-notes">
-                <label>{{localize "tftloop.notes"}}:</label>
+                <label>{{localize "tfhogwarts.notes"}}:</label>
                 <textarea id="system.notes" name="system.notes" rows="9" wrap="soft">{{data.system.notes}}</textarea>
             </div>
         </div>
