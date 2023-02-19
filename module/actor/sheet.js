@@ -40,11 +40,12 @@ export default class tfhogwartsActorSheet extends ActorSheet {
     // set House Logo 
     console.log(sheet.data.system.type);
     switch (sheet.data.system.type) {
-      case gryffindor:
-        
+      case "gryffindor":
+        console.log("griffindor");
         break;
-    
+        
       default:
+        console.log("Not griffindor");
         break;
     }
     actor.update({ "system.houseLogoUrl" : "systems/tfhogwarts/img/tfhogwarts/slytherin.webp"});
