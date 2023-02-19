@@ -41,14 +41,22 @@ export default class tfhogwartsActorSheet extends ActorSheet {
     console.log(sheet.data.system.type);
     switch (sheet.data.system.type) {
       case "gryffindor":
-        console.log("griffindor");
+        actor.update({ "system.houseLogoUrl" : "systems/tfhogwarts/img/tfhogwarts/gryffindor.webp"});
         break;
-        
+      case "hufflepuff":
+        actor.update({ "system.houseLogoUrl" : "systems/tfhogwarts/img/tfhogwarts/hufflepuff.webp"});
+        break;
+      case "slytherin":
+        actor.update({ "system.houseLogoUrl" : "systems/tfhogwarts/img/tfhogwarts/slytherin.webp"});
+        break;
+      case "ravenclaw":
+        actor.update({ "system.houseLogoUrl" : "systems/tfhogwarts/img/tfhogwarts/ravenclaw.webp"});
+        break;
       default:
-        console.log("Not griffindor");
+        actor.update({ "system.houseLogoUrl" : "systems/tfhogwarts/img/tfhogwarts/house-not-assigned.webp"});
         break;
     }
-    actor.update({ "system.houseLogoUrl" : "systems/tfhogwarts/img/tfhogwarts/slytherin.webp"});
+    
     // set the max luck to change the number of boxes we draw on the sheet data.system.luck.max
     if (actor.type == "kid") {
       const maxLuck = 15 - Number(sheet.data.system.age);
