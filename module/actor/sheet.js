@@ -38,8 +38,8 @@ export default class tfhogwartsActorSheet extends ActorSheet {
       });
     }
     // set House Logo 
-    console.log(data.system.type);
-    actor.update({ "data.system.houseLogoUrl" : "systems/tfhogwarts/img/tfhogwarts/slytherin.webp"});
+    console.log(sheet.data.system.type);
+    actor.update({ "sheet.data.system.houseLogoUrl" : "systems/tfhogwarts/img/tfhogwarts/slytherin.webp"});
     // set the max luck to change the number of boxes we draw on the sheet data.system.luck.max
     if (actor.type == "kid") {
       const maxLuck = 15 - Number(sheet.data.system.age);
