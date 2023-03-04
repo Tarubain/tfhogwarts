@@ -39,6 +39,9 @@ export default class tfhogwartsActorSheet extends ActorSheet {
     }
     // set House Logo 
     switch (sheet.data.system.type) {
+      case "notassigned":
+        actor.update({ "system.houseLogoUrl" : "systems/tfhogwarts/img/tfhogwarts/hogwarts.webp"});
+        break;
       case "gryffindor":
         actor.update({ "system.houseLogoUrl" : "systems/tfhogwarts/img/tfhogwarts/gryffindor.webp"});
         break;
@@ -1221,8 +1224,8 @@ export default class tfhogwartsActorSheet extends ActorSheet {
           this.actor.system.prideCheck = true;
           actor.update({ "system.prideCheck": true });
         }
-
         break;
+
       case "accepted":
         console.log(item);
         if (item.system.accepted) {

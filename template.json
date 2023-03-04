@@ -72,7 +72,7 @@
             ],
             "age": 11,
             "type": "type",
-            "drive": "Drive",
+            "drive": "Motivation",
             "luck": {
                 "value": 0,
                 "max": 0
@@ -81,10 +81,10 @@
             "problem": "Problem",
             "pride": "Stolz",
             "prideCheck": false,
-            "description": "Description",
+            "description": "Beschreibung",
             "pet": "Haustier",
             "iconicItem": {
-                "desc": "Item",
+                "desc": "Ikonischer Gegenstand",
                 "bonus": 2
             },
             "hideout": "Hideout Notes",
@@ -108,7 +108,8 @@
         },
         "item": {
             "description": "item",
-            "bonus": 1,
+            "bonus": 0,
+            "slots": 0,
             "notes": ""
         },
         "scar": {

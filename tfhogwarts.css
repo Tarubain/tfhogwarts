@@ -135,9 +135,9 @@ button {
   cursor: pointer;
 }
 .sheet.journal-entry .journal-entry-content {
-  background: unset;
+  /*background: unset;*/
   color: black;
-  background: white;
+  /*background: white;*/
   padding: 10px;
 }
 .sheet.journal-entry .journal-entry-content .journal-sidebar {
