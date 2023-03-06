@@ -99,6 +99,7 @@
         "item": "Gegenstand",
         "bonus": "Bonus",
         "slots": "Slots",
+        "charges": "Haltbarkeit",
         "main": "Übersicht",
         "scars": "Narben",
         "newScar": "Neue Narbe",

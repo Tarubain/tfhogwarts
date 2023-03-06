@@ -7,7 +7,7 @@ export default class tfhogwartsItemSheet extends ItemSheet {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             width : 650, 
-            height: 350,
+            height: 450,
             classes: ["tfhogwarts", "sheet", "item"],
             resizable: true, 
         });

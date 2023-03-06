@@ -271,11 +271,11 @@ select:focus {
   text-indent: none;
 }
 .black-bar {
-  background: black;
+  background: #6b9bf3;
   max-height: 15px;
 }
 .dark-bar {
-  background-color: #ee7113;
+  background-color: #cc9933;
   font-size: 45px;
   color: white;
   text-align: right;
@@ -859,7 +859,7 @@ select:focus {
   font-family: AvantBold;
   color: white;
   background-image: url('img/grunge.png');
-  background-color: #fbba1c;
+  background-color: #eeead7;
   object-fit: cover;
   height: 100%;
 }

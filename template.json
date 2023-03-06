@@ -103,17 +103,18 @@
             "item", "relationship", "scar"
         ],
         "relationship": {
-            "description": "kid",
+            "description": "Beschreibung des Bonuseffektes",
             "notes": ""
         },
         "item": {
             "description": "item",
             "bonus": 0,
             "slots": 0,
+            "charges": 0,
             "notes": ""
         },
         "scar": {
-            "description": "Scar",
+            "description": "Beschreibung der Narbe",
             "notes": "",
             "accpted": false
         }
