@@ -1,4 +1,4 @@
-export function tftloopRoll(rollName) {
+export function tfhogwartsActorSheetRoll(rollName) {
   const speaker = ChatMessage.getSpeaker();
   let actor;
   if (speaker.token) actor = game.actors.tokens[speaker.token];
@@ -38,7 +38,7 @@ export async function createRollMacro(data, slot) {
         name: name,
         type: "script",
         command: command,
-        flags: { "tftloop.rollMacro": true },
+        flags: { "tfhogwartsActorSheet.rollMacro": true },
       },
       { displaySheet: false }
     );

@@ -1,11 +1,11 @@
-import { tftloopRoll } from "../macros.js";
+import { tfhogwartsActorSheetRoll } from "../macros.js";
 
-export default class tftloopActorSheet extends ActorSheet {
+export default class tfhogwartsActorSheet extends ActorSheet {
   static get defaultOptions() {
     let loopOptions = super.defaultOptions;
 
-    loopOptions.template = "systems/tftloop/templates/actors/character.hbs";
-    loopOptions.classes.push("tftloop");
+    loopOptions.template = "systems/tfhogwartsActorSheet/templates/actors/character.hbs";
+    loopOptions.classes.push("tfhogwartsActorSheet");
     loopOptions.classes.push("sheet");
     loopOptions.classes.push("actor");
     loopOptions.classes.push("character");
@@ -145,7 +145,7 @@ export default class tftloopActorSheet extends ActorSheet {
       const rollItemDragged = event.srcElement.firstElementChild.dataset.rolled;
       console.log("rollItemDragged", rollItemDragged);
 
-      tftloopRoll(rollItemDragged);
+      tfhogwartsActorSheetRoll(rollItemDragged);
 
       return;
     } else {
@@ -1099,7 +1099,7 @@ export default class tftloopActorSheet extends ActorSheet {
               roll: r,
               content: chatHTML,
             };
-            console.log("TFTLOOP | Chat Options: ", chatOptions);
+            console.log("tfhogwartsActorSheet | Chat Options: ", chatOptions);
             ChatMessage.applyRollMode(chatOptions, game.settings.get('core', 'rollMode'));
             await ChatMessage.create(chatOptions);
           } else {
