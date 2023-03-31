@@ -50,7 +50,7 @@
     }
   ],
   "socket": false,
-  "initiative": "1d6+20",
+  "initiative": "@templates.initiative.die + @templates.attributes.body",
   "manifest": "https://github.com/Tarubain/tfhogwarts/releases/latest/download/system.json",
   "download": "https://github.com/Tarubain/tfhogwarts/releases/download/0.0.4/system.zip",
   "gridDistance": 1,
