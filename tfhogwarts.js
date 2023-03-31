@@ -3,8 +3,6 @@ import * as Chat from "./module/chat.js";
 import { preloadHandlebarsTemplates } from "./module/templates.js";
 import tfhogwartsActorSheet from "./module/actor/sheet.js";
 import tfhogwartsActor from "./module/actor/entity.js";
-//import tfhogwartsCombat from "./module/combat/combat.js";
-//import tfhogwartsCombatTracker from "./module/combat/combatTracker.js";
 import { registerSystemSettings } from "./module/settings.js";
 import tfhogwartsItemSheet from "./module/item/sheet.js";
 import tfhogwartsItem from "./module/item/entity.js";
@@ -47,8 +45,6 @@ Hooks.once("init", function() {
     CONFIG.tfhogwarts = tfhogwarts;
     CONFIG.Actor.documentClass = tfhogwartsActor;
     CONFIG.Item.documentClass = tfhogwartsItem;
-    //CONFIG.Combat.documentClass = tfhogwartsCombat;
-    //CONFIG.ui.combat = tfhogwartsCombatTracker;
     
     // Register System Settings
     registerSystemSettings();

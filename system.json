@@ -10,7 +10,7 @@
     }
   ],
   "url": "https://github.com/Tarubain/tfhogwarts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "compatibility": {
     "minimum": "10"
   },
@@ -50,7 +50,7 @@
     }
   ],
   "socket": false,
-  "initiative": "@templates.initiative.die + @templates.attributes.body",
+  "initiative": "@move + @body + @mind + 1d6 + @age",
   "manifest": "https://github.com/Tarubain/tfhogwarts/releases/latest/download/system.json",
   "download": "https://github.com/Tarubain/tfhogwarts/releases/download/0.0.4/system.zip",
   "gridDistance": 1,
