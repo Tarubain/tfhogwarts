@@ -64,9 +64,6 @@
                 "exhausted": false,
                 "injured": false,
                 "broken": false
-            },
-            "initiative":{
-                "die": "1d6"
             }
         },
         "kid" : {
