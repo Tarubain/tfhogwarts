@@ -1040,26 +1040,8 @@ select:focus {
   font-size: 0.8em;
 }
 
-/* #popup {
-  display: none;
-  position: absolute;
-  width: 150px;
-  height: 150px;
-  background-color: white;
-  border: 1px solid black;
-  padding: 10px;
-  z-index: 9999;
-}
-
-#popup img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  max-width: 100%;
-  max-height: 100%;
-} */
-
-.skill-image {
+.skill::after {
+  content:'';
   position: absolute;
   left: 100%;
   top: 50%;
@@ -1074,10 +1056,16 @@ select:focus {
   transition: 250ms;
 }
 
-.skill:hover .skill-image {
+.skill:hover::after {
   opacity: 1;
 }
 
 .skill {
   position: relative;
+}
+
+
+/* Spell Images */
+.lumosnox::after {
+  background-image: url('systems/tfhogwarts/img/tfhogwarts/charms/lumos-nox.png');
 }
