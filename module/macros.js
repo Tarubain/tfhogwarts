@@ -20,7 +20,7 @@ export async function createRollMacro(data, slot) {
       "You can only create macro buttons for owned Actors"
     );
 
-  const name = actor.name + ", Test: " + data.rollName;
+  const name = actor.name + ", Probe: " + data.rollName;
   const command = `let myActor = game.actors.get("${actor.id}");myActor.sheet._poolBuilder("${data.rollName}",myActor);`;
   let macro;
 

@@ -1,5 +1,18 @@
 # Tales from Hogwarts
 
+<h3>Version 0.0.5</h3>
+<ol>
+    <li>* Initiative würfelt nun Alter + Bewegen + Aufmerksamkeit + 1d6</li>
+    <li>* Attribute und Fertigkeiten lassen sich nun in die Makrobar ziehen</li>
+    <li>* Attribute und Fertigkeiten im Charaktersheet zeigen Bilder beim Mouseover an</li>
+    <li>* Zauberspruch Redactum heißt nun korrekt Reducio</li>
+</ol>
+
+<h3>Version 0.0.4</h3>
+<ol>
+    <li>* Vorbereitung für neue Features</li>
+</ol>
+
 <h3>Version 0.0.3</h3>
 <ol>
     <li>* Haltbarkeit zu den Items hinzugefügt</li>

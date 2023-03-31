@@ -10,7 +10,7 @@ export default class tfhogwartsActorSheet extends ActorSheet {
     loopOptions.classes.push("actor");
     loopOptions.classes.push("character");
     loopOptions.classes.push("kid");
-    loopOptions.width = 800;
+    loopOptions.width = 1400;
     loopOptions.height = 950;
     loopOptions.tabs = [
       {
@@ -671,9 +671,9 @@ export default class tfhogwartsActorSheet extends ActorSheet {
               data.muffliato +
               "</div>";
             break;
-          case "redactum":
+          case "reducio":
             data.dicePool += data.magic;
-            data.dicePool += data.redactum;
+            data.dicePool += data.reducio;
             statRolled =
               '<div class="pool-detail">' +
               game.i18n.localize("tfhogwarts.magic") +
@@ -682,9 +682,9 @@ export default class tfhogwartsActorSheet extends ActorSheet {
               "</div>";
             statRolled +=
               '<div class="pool-detail">' +
-              game.i18n.localize("tfhogwarts.redactum") +
+              game.i18n.localize("tfhogwarts.reducio") +
               " +" +
-              data.redactum +
+              data.reducio +
               "</div>";
             break;
           case "vulnerasanentur":

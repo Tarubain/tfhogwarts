@@ -1041,9 +1041,9 @@ select:focus {
 }
 
 .skill::after {
-  content:'';
+  content: '';
   position: absolute;
-  left: 100%;
+  left: 110%;
   top: 50%;
   translate: 0 -50%;
   width: 150px;
@@ -1051,9 +1051,12 @@ select:focus {
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
+  background-color: #fbeac7;
   pointer-events: none;
   opacity: 0;
   transition: 250ms;
+  border: 1px solid #000;
+  box-shadow: 2px 2px #7f7f7f;
 }
 
 .skill:hover::after {
@@ -1066,6 +1069,123 @@ select:focus {
 
 
 /* Spell Images */
+.flight::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/flight.png');
+}
+.sneak::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/sneak.png');
+}
+.force::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/force.png');
+}
+.move::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/move.png');
+}
+.ferula::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/ferula.png');
+}
 .lumosnox::after {
   background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/lumos-nox.png');
+}
+.alohomora::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/alohomora.png');
+}
+.periculum::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/periculum.png');
+}
+.petriflicustotalus::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/petriflicustotalus.png');
+}
+.wingardiumleviosa::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/wingardiumleviosa.png');
+}
+.expelliarmus::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/expelliarmus.png');
+}
+.incendio::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/incendio.png');
+}
+.protego::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/protego.png');
+}
+.reparo::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/reparo.png');
+}
+.ridiculus::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/ridiculus.png');
+}
+.herbivicus::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/herbivicus.png');
+}
+.episkey::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/episkey.png');
+}
+.depulso::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/depulso.png');
+}
+.accio::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/accio.png');
+}
+.stupor::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/stupor.png');
+}
+.espectopatronum::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/espectopatronum.png');
+}
+.glacius::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/glacius.png');
+}
+.imperio::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/imperio.png');
+}
+.flipendo::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/flipendo.png');
+}
+.bombarda::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/bombarda.png');
+}
+.crucio::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/crucio.png');
+}
+.muffliato::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/muffliato.png');
+}
+.reducio::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/reducio.png');
+}
+.vulnerasanentur::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/vulnerasanentur.png');
+}
+.confringo::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/confringo.png');
+}
+.avadakedavra::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/avadakedavra.png');
+}
+.creatures::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/creatures.png');
+}
+.contact::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/contact.png');
+}
+.charm::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/charm.png');
+}
+.lead::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/lead.png');
+}
+.herbology::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/herbology.png');
+}
+.potions::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/potions.png');
+}
+.investigate::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/investigate.png');
+}
+.comprehend::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/comprehend.png');
+}
+.empathize::after {
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/empathize.png');
 }
