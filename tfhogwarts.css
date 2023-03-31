@@ -1067,5 +1067,5 @@ select:focus {
 
 /* Spell Images */
 .lumosnox::after {
-  background-image: url('systems/tfhogwarts/img/tfhogwarts/charms/lumos-nox.png');
+  background-image: url('/systems/tfhogwarts/img/tfhogwarts/charms/lumos-nox.png');
 }
