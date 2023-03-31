@@ -28,7 +28,7 @@ Hooks.on("renderChatMessage", function (message){
 
 
 Hooks.once("init", function() {
-    console.log("tfhogwarts | Initializing Tales From the Loop");
+    console.log("tfhogwarts | Initializing Tales From Hogwarts");
 
     game.tfhogwarts = {
         applications: {
@@ -70,4 +70,5 @@ Hooks.once("init", function() {
         
         return result;
     });
+
 })

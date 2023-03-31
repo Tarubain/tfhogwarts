@@ -61,13 +61,14 @@
                     </li>
                     <li>
                         <ol class="skill-list">
-                            <li class="skill flexrow ferula" >
+                            <li class="skill flexrow ferula">
                                 <span class="add-to-pool" data-rolled="ferula">{{localize "tfhogwarts.ferula"}}</span>
                                 <input type="text" name="system.ferula" value="{{data.system.ferula}}" data-dtype="Number"/>
                             </li>
-                            <li class="skill flexrow lumosnox" >
+                            <li class="skill flexrow lumosnox">
                                 <span class="add-to-pool" data-rolled="lumosnox">{{localize "tfhogwarts.lumosnox"}}</span>
                                 <input type="text" name="system.lumosnox" value="{{data.system.lumosnox}}" data-dtype="Number"/>
+                                <span style="background-image: url('systems/tfhogwarts/img/tfhogwarts/charms/lumos-nox.png');" class="skill-image"></span>
                             </li>
                             <li class="skill flexrow alohomora" >
                                 <span class="add-to-pool" data-rolled="alohomora">{{localize "tfhogwarts.alohomora"}}</span>
@@ -225,6 +226,12 @@
                     </li>    
                 </ol>
             </div>
+
+            
+            <div id="popup">
+                <img id="popup-image" src="" alt="Bild" />
+            </div>
+            
 
             <div class="experience-group">
                 <div class="section-header experience">
