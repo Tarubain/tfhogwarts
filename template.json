@@ -78,6 +78,9 @@
                 "max": 0
             },
             "wand": "Zauberstab",
+            "galleon": 0,
+            "sickel": 0,
+            "knuts": 0,
             "problem": "Problem",
             "pride": "Stolz",
             "prideCheck": false,

@@ -175,13 +175,37 @@ export default class tfhogwartsActorSheet extends ActorSheet {
         {
           name: storedItem.name,
           type: storedItem.type,
+          img: storedItem.img,
           system: {
             description: storedItem.system.description,
             notes: storedItem.system.notes,
+            slots: storedItem.system.slots,
+            charges: storedItem.system.charges,
+            bonus: storedItem.system.bonus
           },
         },
       ];
-      return actor.createEmbeddedDocuments("Item", itemData);
+
+      actor.createEmbeddedDocuments("Item", itemData);
+
+    // remove the item from the original actor unlsee it is the same actor
+    let originalActor = storedItem.actor;
+   
+    if (originalActor.id === this.actor.id) {
+      console.log("tftloop| item dropped on self");
+      return;
+    }
+
+
+    return originalActor.deleteEmbeddedDocuments("Item", [storedItem.id]);
+
+
+
+
+
+
+
+      
     }
 
     return;

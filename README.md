@@ -1,5 +1,11 @@
 # Tales from Hogwarts
 
+<h3>Version 0.0.6</h3>
+<ol>
+    <li>* Items werden nun korrekt zwischen Charakterbögen verschoben. </li>
+    <li>* Geldbeutel zum Charakterbogen hinzugefügt.</li>
+</ol>
+
 <h3>Version 0.0.5</h3>
 <ol>
     <li>* Initiative würfelt nun Alter + Bewegen + Aufmerksamkeit + 1d6</li>

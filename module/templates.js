@@ -17,7 +17,8 @@ export const preloadHandlebarsTemplates = async function() {
         "systems/tfhogwarts/templates/actors/parts/core-info.hbs",
         "systems/tfhogwarts/templates/actors/parts/core-teen.hbs",
         "systems/tfhogwarts/templates/actors/parts/conditions-teen.hbs",
-        "systems/tfhogwarts/templates/actors/parts/teen-item-notes.hbs"
+        "systems/tfhogwarts/templates/actors/parts/teen-item-notes.hbs",
+        "systems/tfhogwarts/templates/actors/parts/moneybag.hbs"
     ];
   
     // Load the template parts
