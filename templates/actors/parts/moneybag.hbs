@@ -4,22 +4,24 @@
             <h4 class="section-header">{{localize "tfhogwarts.moneybag"}}</h4>
         </div>
 
-            <div class="flexrow">
-                <div class="flexrow">
+            <div class="flexrow" style="text-align:center">
+                <div>
                     <label>{{localize "tfhogwarts.galleon"}}</label>
                     <input name="system.galleon" type="text" value="{{data.system.galleon}}" data-dtype="Number" placeholder=""/>
                 </div>
-                <div class="flexrow">
+                <div>
                     <label>{{localize "tfhogwarts.sickel"}}</label>
                     <input name="system.sickel" type="text" value="{{data.system.sickel}}" data-dtype="Number" placeholder=""/>
                 </div>
-                <div class="flexrow">
+                <div>
                     <label>{{localize "tfhogwarts.knuts"}}</label>
                     <input name="system.knuts" type="text" value="{{data.system.knuts}}" data-dtype="Number" placeholder=""/>
                 </div>             
             </div>
 
-
+            <div class="flexrow" style="text-align:center">
+                <p><i><small>1 Galleone = 15 Sickel<br>1 Sickel = 30 Knuts</small></i></p>
+            </div>
         
     </div>
 
